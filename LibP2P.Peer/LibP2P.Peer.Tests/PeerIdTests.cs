@@ -28,8 +28,8 @@ namespace LibP2P.Peer.Tests
                 {
                     sk = pair.PrivateKey,
                     pk = pair.PublicKey,
-                    hpk = h.ToString(Multibase.Base16),
-                    hpkp = h.ToString(Multibase.Base58)
+                    hpk = h.ToString(MultibaseEncoding.Base16Upper),
+                    hpkp = h.ToString(MultibaseEncoding.Base58Btc)
                 };
                 return ks;
             }
@@ -40,8 +40,8 @@ namespace LibP2P.Peer.Tests
                 var ks = new KeySet {sk = PrivateKey.Unmarshal(skBytes)};
                 ks.pk = ks.sk.GetPublic();
                 var h = Multihash.Sum<SHA2_256>(ks.pk.Bytes);
-                ks.hpk = h.ToString(Multibase.Base16);
-                ks.hpkp = h.ToString(Multibase.Base58);
+                ks.hpk = h.ToString(MultibaseEncoding.Base16Upper);
+                ks.hpkp = h.ToString(MultibaseEncoding.Base58Btc);
                 if (ks.hpkp != hpkp)
                     throw new Exception($"hpkp doesn't match key. want: {hpkp}, got: {ks.hpkp}");
 
@@ -69,12 +69,12 @@ namespace LibP2P.Peer.Tests
             Action<KeySet> test = (ks) =>
             {
                 var p1 = PeerId.Decode(ks.hpkp);
-                Assert.That(p1.ToString(Multibase.Base16), Is.EqualTo(ks.hpk));
+                Assert.That(p1.ToString(MultibaseEncoding.Base16Upper), Is.EqualTo(ks.hpk));
                 Assert.That(p1.MatchesPublicKey(ks.pk), Is.True);
 
                 var p2 = new PeerId(ks.pk);
                 Assert.That(p1, Is.EqualTo(p2));
-                Assert.That(p2.ToString(Multibase.Base58), Is.EqualTo(ks.hpkp));
+                Assert.That(p2.ToString(MultibaseEncoding.Base58Btc), Is.EqualTo(ks.hpkp));
             };
 
             test(gen1);
@@ -88,7 +88,7 @@ namespace LibP2P.Peer.Tests
             Action<KeySet> test = (ks) =>
             {
                 var p1 = PeerId.Decode(ks.hpkp);
-                Assert.That(p1.ToString(Multibase.Base16), Is.EqualTo(ks.hpk));
+                Assert.That(p1.ToString(MultibaseEncoding.Base16Upper), Is.EqualTo(ks.hpk));
                 Assert.That(p1.MatchesPrivateKey(ks.sk), Is.True);
 
                 var p2 = new PeerId(ks.sk);
