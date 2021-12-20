@@ -14,7 +14,7 @@ namespace LibP2P.Peer.Store
         public PeerId Id { get; internal set; }
 
         [JsonProperty("Addrs", ItemConverterType = typeof(MultiaddressConverter))]
-        public Multiaddress[] Addresses { get; internal set; }
+        public Multiaddress[] Addresses { get; set; }
 
         private static readonly JsonSerializerSettings _jsonSettings;
 
@@ -88,7 +88,7 @@ namespace LibP2P.Peer.Store
             if (value == null)
                 writer.WriteNull();
             else
-                serializer.Serialize(writer, ((PeerId)value).ToString(Multibase.Base58));
+                serializer.Serialize(writer, ((PeerId)value).ToString(MultibaseEncoding.Base58Btc));
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -102,12 +102,12 @@ namespace LibP2P.Peer.Store
                 case JTokenType.Null:
                     return null;
                 case JTokenType.String:
-                    return new PeerId(Multibase.DecodeRaw(Multibase.Base58, (string)token));
+                    return new PeerId(Multibase.DecodeRaw(MultibaseEncoding.Base58Btc, (string)token));
                 case JTokenType.Bytes:
                     return new PeerId((byte[])token);
                 case JTokenType.Object:
                     var value = (string)token["$value"];
-                    return value == null ? null : new PeerId(Multibase.DecodeRaw(Multibase.Base58, value));
+                    return value == null ? null : new PeerId(Multibase.DecodeRaw(MultibaseEncoding.Base58Btc, value));
                 default:
                     throw new SerializationException("Unknown PeerId format");
             }
