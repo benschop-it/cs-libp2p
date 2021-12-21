@@ -74,8 +74,10 @@
     <Reference Include="Semver, Version=2.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Semver.2.0.6\lib\net452\Semver.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleBase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=eb1df8ff9aee2c6f, processorArchitecture=MSIL">
+    <Reference Include="SimpleBase, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SimpleBase.2.1.0\lib\net472\SimpleBase.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sodium, Version=0.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\libsodium-net.0.10.0\lib\Net40\Sodium.dll</HintPath>

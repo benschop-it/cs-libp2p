@@ -69,7 +69,7 @@ namespace LibP2P.Peer.Tests
             Action<KeySet> test = (ks) =>
             {
                 var p1 = PeerId.Decode(ks.hpkp);
-                Assert.That(p1.ToString(MultibaseEncoding.Base16Upper), Is.EqualTo(ks.hpk));
+                Assert.That(p1.ToString(MultibaseEncoding.Base16Lower).ToUpper, Is.EqualTo(ks.hpk));
                 Assert.That(p1.MatchesPublicKey(ks.pk), Is.True);
 
                 var p2 = new PeerId(ks.pk);
@@ -88,7 +88,7 @@ namespace LibP2P.Peer.Tests
             Action<KeySet> test = (ks) =>
             {
                 var p1 = PeerId.Decode(ks.hpkp);
-                Assert.That(p1.ToString(MultibaseEncoding.Base16Upper), Is.EqualTo(ks.hpk));
+                Assert.That(p1.ToString(MultibaseEncoding.Base16Lower).ToUpper, Is.EqualTo(ks.hpk));
                 Assert.That(p1.MatchesPrivateKey(ks.sk), Is.True);
 
                 var p2 = new PeerId(ks.sk);
