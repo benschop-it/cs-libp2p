@@ -42,9 +42,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Blake2s, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\blake2s-net.0.1.0\lib\net\Blake2s.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>True</Private>
+      <HintPath>..\..\packages\blake2s-net.0.1.0\lib\net\Blake2s.dll</HintPath>
     </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
@@ -133,7 +131,7 @@
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Xml" />
     <Reference Include="WallF.BaseNEncodings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WallF.BaseNEncodings.1.0.0.0\lib\net20\WallF.BaseNEncodings.dll</HintPath>
+      <HintPath>..\..\packages\WallF.BaseNEncodings.1.0.0.0\lib\net20\WallF.BaseNEncodings.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

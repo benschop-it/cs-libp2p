@@ -67,7 +67,7 @@ namespace LibP2P.Peer
         public static PeerId Decode(string s)
         {
             Multihash mh;
-            return Multihash.TryParse(s, out mh) ? new PeerId(mh) : new PeerId(Multibase.DecodeRaw(MultibaseEncoding.Base16Upper, s.ToUpper()));
+            return Multihash.TryParse(s, MultibaseEncoding.Base58Btc, out mh) ? new PeerId(mh) : new PeerId(Multibase.DecodeRaw(MultibaseEncoding.Base16Upper, s.ToUpper()));
         }
 
         public static implicit operator PeerId(string value) => new PeerId(value);
